@@ -93,6 +93,7 @@ CFLAGS="-O2 ${SLKCFLAGS}" ./configure \
 	--enable-libvpx \
 	--enable-postproc \
 	--enable-avresample \
+	--enable-libpulse \
 	--enable-x11grab
 make
 make install DESTDIR=$PKG
