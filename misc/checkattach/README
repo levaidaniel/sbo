@@ -1,0 +1,10 @@
+When using mutt as your mail user agent, you can specify which files to attach
+using the pseudo header :Attach. This only works when edit_headers is set in
+your .muttrc configuration file. See the mutt manual for further information
+about that topic.
+
+This plugin checks, whether certain keywords exist in your mail, and if found,
+you'll be asked to attach the files. This is done to prevent that you sent
+mails in which you announce to attach some files but actually forget to attach
+the files so that your have to write a second mail which often is quite
+embarassing.
