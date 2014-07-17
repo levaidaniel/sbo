@@ -1,3 +1,9 @@
+This is a personal repository that is volatile, and rebased frequently on top
+of the original SlackBuild.org git repository. Keep this in mind if you're
+using this.
+
+
+The original slackbuild repository:
 
 See https://slackbuilds.org/howto/ for instructions on 
 how to use the contents of this directory.
