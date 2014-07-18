@@ -1,0 +1,29 @@
+--- ct_install.sh.orig	2014-07-18 13:58:13.163469357 +0200
++++ ct_install.sh	2014-07-18 14:07:51.324333870 +0200
+@@ -133,17 +133,6 @@ ct_build_and_install()
+ 		cd ..
+ 	fi
+ 
+-	# build and install curl source using the same openssl version as ct.
+-	pkg="curl-7.28.1"
+-	echo "Building ==> $pkg"
+-	cd "$pkg"
+-	./configure --disable-shared --disable-ldap --with-ssl || \
+-	    report_err "config script failed for '$pkg'."
+-	make || report_err "Make failed for '$pkg'."
+-	echo "Installing ==> $pkg"
+-	make install || report_err "Install failed for '$pkg'."
+-	cd ..
+-
+ 	# build and install packages in dependency order
+ 	CT_PKGS="clens clog assl xmlsd shrink exude cyphertite"
+ 	for pkg in $CT_PKGS; do
+@@ -160,8 +149,6 @@ ct_build_and_install()
+ 
+ 
+ # main execution starts here
+-check_root_perms
+ check_utils
+ check_external_libs
+ ct_build_and_install
+-

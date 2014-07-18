@@ -1,0 +1,18 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+          |-----handy-ruler------------------------------------------------------|
+cyphertite: cyphertite (a high-security scalable solution for online backups)
+cyphertite:
+cyphertite: Cyphertite is a tar-like secure remote deduplicating archiver. It
+cyphertite: deduplicates, compresses, and encrypts data prior to transmission
+cyphertite: providing total privacy while keeping chattering down on the wire. It
+cyphertite: seamlessly supports both IPv6 and IPv4 on a variety of platforms.
+cyphertite:
+cyphertite: Homepage: https://www.cyphertite.com
+cyphertite:
+cyphertite:
