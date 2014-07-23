@@ -23,6 +23,8 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+# SlackBuild script for Cypertite
+
 PRGNAM=cyphertite
 VERSION=${VERSION:-2.0.2}
 BUILD=${BUILD:-1}
@@ -81,22 +83,22 @@ MANDIR=/usr/man \
 LN='ln -s' \
 	./ct_install.sh
 
+# recreate symlinks to relative paths
+for link in $(find $PKG/usr/bin $PKG/usr/man -type l);do
+	ln -sf $(basename $(readlink "${link}")) "${link}"
+done
+
 # strip binaries
 for bin in $PKG/usr/bin/*;do
 	strip --strip-unneeded "${bin}"
 done
-# recreate symlinks to relative paths
-for bin in $(find $PKG/usr/bin -type l);do
-	ln -sf $(basename $(readlink "${bin}")) "${bin}"
-done
 
 # compress man pages
 find $PKG/usr/man -type f -exec gzip -9 {} \;
-# rename symlinks with .gz suffices
-for i in $(find $PKG/usr/man -type l) ; do ln -s $(readlink $i).gz $i.gz ; rm $i ; done
-# recreate symlinks to relative paths
-for man in $(find $PKG/usr/man -type l);do
-	ln -sf $(basename $(readlink "${man}")) "${man}"
+# recreate symlinks to .gz suffices, and also rename them to *.gz
+for i in $(find $PKG/usr/man -type l);do
+	ln -s $(readlink $i).gz $i.gz
+	rm $i
 done
 
 # clog.3.gz is already present in the man-pages package
