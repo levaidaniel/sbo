@@ -1,0 +1,12 @@
+PRGNAM="yum"
+VERSION="3.4.3"
+HOMEPAGE="http://yum.baseurl.org"
+DOWNLOAD="http://yum.baseurl.org/download/3.4/yum-3.4.3.tar.gz
+          http://yum.baseurl.org/download/yum-metadata-parser/yum-metadata-parser-1.1.4.tar.gz"
+MD5SUM="7c8ea8beba5b4e7fe0c215e4ebaa26ed
+        05289971e5cfde532631f2a99f6c58c7"
+DOWNLOAD_x86_64=""
+MD5SUM_x86_64=""
+REQUIRES="urlgrabber"
+MAINTAINER="LEVAI Daniel"
+EMAIL="leva@ecentrum.hu"
