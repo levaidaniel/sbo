@@ -1,6 +1,4 @@
-diff --git a/spectrwm.1 b/spectrwm.1
-index 54b8123..8eb867e 100644
---- a/spectrwm.1
+--- a/spectrwm.1.orig
 +++ b/spectrwm.1
 @@ -318,6 +318,12 @@ This setting is not retained at restart.
  .It Ic modkey
@@ -15,20 +13,18 @@ index 54b8123..8eb867e 100644
  .It Ic name
  Set the name of a workspace at start-of-day.
  Defined in the format ws[<idx>]:<name>, e.g. ws[1]:Console sets the name of
-diff --git a/spectrwm.c b/spectrwm.c
-index 3719d0d..96a6256 100644
---- a/spectrwm.c
-+++ b/spectrwm.c
-@@ -331,6 +331,8 @@ int			cycle_visible = 0;
- int			term_width = 0;
+--- a/spectrwm.c.orig	2014-08-10 09:40:49.435435933 +0200
++++ a/spectrwm.c	2014-08-10 09:45:01.328440257 +0200
+@@ -332,6 +332,8 @@ int			term_width = 0;
  int			font_adjusted = 0;
  unsigned int		mod_key = MODKEY;
+ bool			warp_pointer = false;
 +unsigned int		mouse_button_move = XCB_BUTTON_INDEX_1;
 +unsigned int		mouse_button_resize = XCB_BUTTON_INDEX_3;
  
  /* dmenu search */
  struct swm_region	*search_r;
-@@ -1109,6 +1111,8 @@ int	 setautorun(const char *, const char *, int);
+@@ -1114,6 +1116,8 @@ int	 setautorun(const char *, const char
  int	 setconfbinding(const char *, const char *, int);
  int	 setconfcolor(const char *, const char *, int);
  int	 setconfmodkey(const char *, const char *, int);
@@ -37,7 +33,7 @@ index 3719d0d..96a6256 100644
  int	 setconfquirk(const char *, const char *, int);
  int	 setconfregion(const char *, const char *, int);
  int	 setconfspawn(const char *, const char *, int);
-@@ -1156,6 +1160,7 @@ void	 unmap_window(struct ws_win *);
+@@ -1161,6 +1165,7 @@ void	 unmap_window(struct ws_win *);
  void	 updatenumlockmask(void);
  void	 update_floater(struct ws_win *);
  void	 update_modkey(unsigned int);
@@ -45,7 +41,7 @@ index 3719d0d..96a6256 100644
  void	 update_win_stacking(struct ws_win *);
  void	 update_window(struct ws_win *);
  void	 update_window_color(struct ws_win *);
-@@ -6659,6 +6664,43 @@ update_modkey(unsigned int mod)
+@@ -6705,6 +6710,43 @@ update_modkey(unsigned int mod)
  			buttons[i].mask = mod;
  }
  
@@ -89,7 +85,7 @@ index 3719d0d..96a6256 100644
  int
  spawn_expand(struct swm_region *r, union arg *args, const char *spawn_name,
      char ***ret_args)
-@@ -8115,6 +8157,48 @@ setconfmodkey(const char *selector, const char *value, int flags)
+@@ -8171,6 +8213,48 @@ setconfmodkey(const char *selector, cons
  }
  
  int
@@ -138,7 +134,7 @@ index 3719d0d..96a6256 100644
  setconfcolor(const char *selector, const char *value, int flags)
  {
  	int	first, last, i = 0, num_screens;
-@@ -8366,6 +8450,8 @@ struct config_option configopt[] = {
+@@ -8418,6 +8502,8 @@ struct config_option configopt[] = {
  	{ "keyboard_mapping",		setkeymapping,	0 },
  	{ "layout",			setlayout,	0 },
  	{ "modkey",			setconfmodkey,	0 },
