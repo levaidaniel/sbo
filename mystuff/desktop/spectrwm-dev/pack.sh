@@ -7,4 +7,4 @@ git pull
 )
 
 echo 'archiving...'
-tar -hzcf spectrwm-dev.tar.gz spectrwm-dev
+tar -hzcf spectrwm-dev.tgz spectrwm-dev
