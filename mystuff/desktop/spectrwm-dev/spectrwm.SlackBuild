@@ -91,14 +91,8 @@ cd ..
 #strip --strip-unneeded $PKG/usr/bin/spectrwm
 rm -f $PKG/usr/bin/scrotwm
 
-# Fixup the manpages
-( cd $PKG/usr/man
-  for lang in es it ru pt; do
-    mkdir -p $lang/man1
-    mv man1/spectrwm_$lang.1 $lang/man1/spectrwm.1
-  done
-  find . -type f -exec gzip -9 {} \;
-)
+# Compress the manpages
+( cd $PKG/usr/man; find . -type f -exec gzip -9 {} \; )
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION/examples/keybindings
 cp -a initscreen.sh $CWD/examples/* \
