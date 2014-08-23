@@ -88,7 +88,6 @@ CFLAGS="$SLKCFLAGS" \
   --enable-imap \
   --with-ssl \
   --with-sasl \
-  --with-gss=/usr/kerberos/ \
   --enable-smtp \
   --enable-gpgme \
   --enable-hcache \
