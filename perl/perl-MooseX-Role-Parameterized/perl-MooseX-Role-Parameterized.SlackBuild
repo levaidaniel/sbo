@@ -1,7 +1,7 @@
 #!/bin/sh
 
 PRGNAM=perl-MooseX-Role-Parameterized
-VERSION=${VERSION:-1.07}
+VERSION=${VERSION:-1.08}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
