@@ -1,0 +1,5 @@
+MultiSSH is a GTK+ based SSH client originally developed by Bradley Smith. It's
+designed to connect to multiple servers and issue the same commands to each
+server, making administering multiple servers less of a chore. There is also
+functionality to only issue commands to individual servers, and to select a
+portion of the servers to send commands to.
