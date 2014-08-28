@@ -1,0 +1,11 @@
+--- Makefile.orig	2014-08-28 22:27:27.915610207 +0200
++++ Makefile	2014-08-28 22:28:04.636610837 +0200
+@@ -24,7 +24,7 @@ VERSION		 = 1.13.1
+ # Specify this if you want to hard-code the operating system to appear
+ # in the lower-left hand corner of -mdoc manuals.
+ #
+-# CFLAGS	+= -DOSNAME="\"OpenBSD 5.5\""
++CFLAGS	+= -DOSNAME="\"Slackware Linux\""
+ 
+ # IFF your system supports multi-byte functions (setlocale(), wcwidth(),
+ # putwchar()) AND has __STDC_ISO_10646__ (that is, wchar_t is simply a
