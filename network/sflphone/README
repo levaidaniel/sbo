@@ -1,0 +1,10 @@
+SFLphone is an open-source SIP/IAX2 compatible enterprise-class softphone, published under the GNU Public License 3.
+
+CLI client and daemon are build by default.
+Video support can be added with WITH_VIDEO=yes option. This requires ffmpeg.
+Pulseaudio support can be added with WITH_PULSE=yes option. This requires pulseaudio.
+To build the KDE client use BUILD_KDE=yes. (WITH_VIDEO disabled temporarily... WIP).
+To build the GTK client use BUILD_GTK=yes. This requires cogl, clutter, clutter-gtk.
+
+NOTE: This SlackBuild is a work in progress and not every thing works properly yet.
+      Use in a production or critical environment is not encouraged or recommended at this time.
