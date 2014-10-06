@@ -1,0 +1,8 @@
+This package provides a library that adds ZRTP support to the GNU
+ccRTP stack. Phil Zimmermann developed ZRTP to allow ad-hoc, easy to
+use key negotiation to setup Secure RTP (SRTP) sessions. GNU ZRTP works
+together with GNU ccRTP (1.5.0 or later) and provides a ZRTP
+implementation that can be directly embedded into client and server
+applications.
+
+web page: http://www.gnu.org/software/ccrtp
