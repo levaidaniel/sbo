@@ -1,24 +1,30 @@
---- ct_install.sh.orig	2014-07-18 13:58:13.163469357 +0200
-+++ ct_install.sh	2014-07-18 14:07:51.324333870 +0200
-@@ -133,17 +133,6 @@ ct_build_and_install()
- 		cd ..
+--- ct_install.sh.orig	2014-11-02 10:36:04.664944303 +0100
++++ ct_install.sh	2014-11-02 10:36:33.368584447 +0100
+@@ -138,23 +138,6 @@ ct_build_and_install()
+ 
  	fi
  
 -	# build and install curl source using the same openssl version as ct.
 -	pkg="curl-7.28.1"
--	echo "Building ==> $pkg"
--	cd "$pkg"
--	./configure --disable-shared --disable-ldap --with-ssl || \
--	    report_err "config script failed for '$pkg'."
--	make || report_err "Make failed for '$pkg'."
--	echo "Installing ==> $pkg"
--	make install || report_err "Install failed for '$pkg'."
--	cd ..
+-	if ! curl --version | grep $openssl_ver >/dev/null 2>&1;
+-		then
+-		echo "Building ==> $pkg"
+-		cd "$pkg"
+-		./configure --disable-shared --disable-ldap --with-ssl || \
+-		    report_err "config script failed for '$pkg'."
+-		make || report_err "Make failed for '$pkg'."
+-		echo "Installing ==> $pkg"
+-		make install || report_err "Install failed for '$pkg'."
+-		cd ..
+-	else
+-		curl_ver=$(curl --version |cut -d" " -f1,2 |head -1)
+-		echo "Found $curl_ver, skipping build"
+-	fi
 -
  	# build and install packages in dependency order
  	CT_PKGS="clens clog assl xmlsd shrink exude cyphertite"
  	for pkg in $CT_PKGS; do
-@@ -160,8 +149,6 @@ ct_build_and_install()
+@@ -171,8 +154,6 @@ ct_build_and_install()
  
  
  # main execution starts here
