@@ -28,9 +28,9 @@
 # Build script for CheckAttach vim ftplugin
 
 PRGNAM=checkattach
-VERSION=${VERSION:-0.16}
+VERSION=${VERSION:-0.17}
 DISTNAME=CheckAttach
-COMMIT_ID='14338d5db5afbbcfaf929b420df4dee526049a8b'
+COMMIT_ID='74f26ebc22473b3f6113a2142cbbbffb8c0b7e0b'
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
