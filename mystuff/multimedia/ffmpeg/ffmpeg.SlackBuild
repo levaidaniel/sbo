@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Copyright (c) 2012 Daniel LEVAI
+# Copyright (c) 2012-2014 LEVAI Daniel
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -75,10 +75,15 @@ find -L . \
 
 VERSION=$(./version.sh |cut -d- -f2)
 
-CFLAGS="-O2 ${SLKCFLAGS}" ./configure \
+CFLAGS="-O2 ${SLKCFLAGS}" \
+	./configure \
 	--prefix=/usr \
+	--libdir=/usr/lib${LIBDIRSUFFIX} \
+	--shlibdir=/usr/lib${LIBDIRSUFFIX} \
+	--docdir=/usr/doc/$PRGNAM-$VERSION/html \
 	--mandir=/usr/man \
-	--docdir=/usr/doc/$PRGNAM-$VERSION \
+	--disable-debug \
+	--enable-shared \
 	--disable-static \
 	--enable-shared \
 	--enable-libx264 \
@@ -94,19 +99,22 @@ CFLAGS="-O2 ${SLKCFLAGS}" ./configure \
 	--enable-postproc \
 	--enable-avresample \
 	--enable-libpulse \
+	--enable-libopenjpeg \
 	--enable-x11grab
 make
 make install DESTDIR=$PKG
 make install-man DESTDIR=$PKG
 
-for man in $PKG/usr/man/man1/*;do
-	gzip -9 "${man}"
-done
+find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | \
+  grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
 
-mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+find $PKG/usr/man -type f -exec gzip -9 {} \;
+
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION/txt
 cp -a \
   COPYING.* MAINTAINERS CREDITS Changelog \
-  $PKG/usr/doc/$PRGNAM-$VERSION
+  $PKG/usr/doc/$PRGNAM-$VERSION/txt/
+find . -name "RELEASE_NOTES" -exec cp -a {} $PKG/usr/doc/$PRGNAM-$VERSION/ \;
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
 mkdir -p $PKG/install
