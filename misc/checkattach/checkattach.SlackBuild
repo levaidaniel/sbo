@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Copyright (c) 2013-2014 LEVAI Daniel
+# Copyright (c) 2013-2015 LEVAI Daniel
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
 PRGNAM=checkattach
 VERSION=${VERSION:-0.17}
 DISTNAME=CheckAttach
-COMMIT_ID='74f26ebc22473b3f6113a2142cbbbffb8c0b7e0b'
+COMMIT_ID='0e4e32cf6431f424a5d48fbc8c3431c7d684441b'
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
