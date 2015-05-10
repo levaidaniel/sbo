@@ -56,7 +56,15 @@ BUILD="${BUILD:-1}"
 TAG="${TAG:-SBo}"
 PKG_TYPE="${PKG_TYPE:-tgz}"
 
-ARCH="${ARCH:-i486}"
+if [ -z "$ARCH" ]; then
+  case "$( uname -m )" in
+    i686) ARCH=i686 ;;
+    i?86) ARCH=i486 ;;
+    arm*) ARCH=arm ;;
+       *) ARCH=$( uname -m ) ;;
+  esac
+fi
+
 if [ "${ARCH}" == 'i486' ];then
 	SLKCFLAGS='-O2 -march=i486 -mtune=i686'
 	LIBDIRSUFFIX=''
