@@ -75,10 +75,17 @@ find -L . \
 
 patch -p0 --quiet <"$CWD/patches/00-ct_install.diff"
 
-CFLAGS="${SLKCFLAGS} -I${PKG}/usr/include -I${PKG}/usr/include/clens" \
-LDFLAGS="-L${PKG}/usr/lib" \
+for mkfile in $(find ./ -type f -name GNUmakefile);do
+	if fgrep -q curl-config "${mkfile}";then
+		sed -r -i -e 's,(^.*curl-config.*)(--static-libs)(.*$),\1--libs\3,' "${mkfile}"
+	fi
+done
+
+CFLAGS="${SLKCFLAGS} -I${PKG}/usr/include -I${PKG}/usr/include/clens -I/usr/include" \
+LDFLAGS="-L${PKG}/usr/lib${LIBDIRSUFFIX} -L/usr/lib${LIBDIRSUFFIX}" \
 DESTDIR="${PKG}" \
 LOCALBASE=/usr \
+LIBDIR="/usr/lib${LIBDIRSUFFIX}" \
 MANDIR=/usr/man \
 LN='ln -s' \
 	./ct_install.sh
