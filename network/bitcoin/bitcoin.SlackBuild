@@ -72,6 +72,11 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
+# Fix compile issue with BOOST
+# https://github.com/bitcoin/bitcoin/commit/8b08d9530b93c7a98e7387167ecd2cd5b0563bfb
+# https://github.com/bitcoin/bitcoin/issues/6113
+sed -r -i -e 's,(^.*const CScriptID& hash = boost::get<)const CScriptID&(>\(address\);),\1CScriptID\2,' src/rpcrawtransaction.cpp
+
 # build bitcoin-core
 [ -f autogen.sh ] && sh autogen.sh
 CFLAGS="$SLKCFLAGS" \
