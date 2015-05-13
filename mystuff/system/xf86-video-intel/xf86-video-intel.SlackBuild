@@ -19,17 +19,17 @@ PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
 if [ "${ARCH}" == "i486" ];then
-  SLKCFLAGS='-march=i486 -mtune=i686'
-  LIBDIRSUFFIX=""
+  SLKCFLAGS='-O2 -march=i486 -mtune=i686'
+  LIBDIRSUFFIX=''
 elif [ "$ARCH" == "i686" ]; then
-  SLKCFLAGS="-march=i686 -mtune=i686"
-  LIBDIRSUFFIX=""
+  SLKCFLAGS='-O2 -march=i686 -mtune=i686'
+  LIBDIRSUFFIX=''
 elif [ "${ARCH}" == "x86_64" ];then
-  SLKCFLAGS='-fPIC'
-  LIBDIRSUFFIX="64"
+  SLKCFLAGS='-O2 -fPIC'
+  LIBDIRSUFFIX='64'
 else
-  SLKCFLAGS="-O2"
-  LIBDIRSUFFIX=""
+  SLKCFLAGS='-O2'
+  LIBDIRSUFFIX=''
 fi
 
 set -e
@@ -52,8 +52,10 @@ make distclean
 ./configure \
 	--prefix=/usr \
 	--mandir=/usr/man \
+	--libdir=/usr/lib${LIBDIRSUFFIX} \
 	--docdir=/usr/doc/$PRGNAM-$VERSION \
-	--sysconfdir=/etc
+	--sysconfdir=/etc \
+	--with-default-dri=3
 VERSION=$(egrep ^VERSION Makefile |cut -d' ' -f3)
 make
 make install DESTDIR=$PKG
