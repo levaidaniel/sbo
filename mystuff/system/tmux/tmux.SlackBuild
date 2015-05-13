@@ -53,7 +53,7 @@ DISTFILE="${APP}-dev${EXT}"
 PKG_VERSION='dev'
 PKG_NAME="${APP}-${PKG_VERSION}"
 BUILD="${BUILD:-1}"
-TAG="${TAG:-SBo}"
+TAG="${TAG:-daniell}"
 PKG_TYPE="${PKG_TYPE:-tgz}"
 
 if [ -z "$ARCH" ]; then
