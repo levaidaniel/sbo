@@ -2,7 +2,7 @@
 
 PRGNAM=xf86-video-intel
 BUILD=${BUILD:-1}
-TAG=${TAG:-_SBo}
+TAG=${TAG:-_daniell}
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
