@@ -26,7 +26,7 @@
 PRGNAM=spectrwm
 VERSION=dev
 BUILD=${BUILD:-1}
-TAG=${TAG:-_SBo}
+TAG=${TAG:-_daniell}
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
@@ -72,9 +72,11 @@ find -L . \
 
 VERSION=${VERSION}_$(git log --max-count=1 |egrep ^commit |cut -d' ' -f2 |cut -b1-9)
 
-for diff in "$CWD"/patches/*.diff;do
-	patch -p1 < "${diff}"
-done
+#for diff in "$CWD"/patches/*.diff;do
+#	patch -p1 < "${diff}"
+#done
+
+sed -r -i -e 's,tail -c 9,tail --bytes=9,' buildver.sh
 
 cd linux
   CFLAGS="$SLKCFLAGS -ggdb -O0" make \
