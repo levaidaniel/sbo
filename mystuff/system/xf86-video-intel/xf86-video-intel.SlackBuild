@@ -47,6 +47,9 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
  -exec chmod 644 {} \;
 
+VERSION=$(git describe |tr - _)
+echo "VERSION=${VERSION}"
+
 ./autogen.sh
 make distclean
 ./configure \
@@ -56,7 +59,7 @@ make distclean
 	--docdir=/usr/doc/$PRGNAM-$VERSION \
 	--sysconfdir=/etc \
 	--with-default-dri=3
-VERSION=$(egrep ^VERSION Makefile |cut -d' ' -f3)
+#VERSION=$(egrep ^VERSION Makefile |cut -d' ' -f3)
 make
 make install DESTDIR=$PKG
 
