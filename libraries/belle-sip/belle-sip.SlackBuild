@@ -110,6 +110,7 @@ CPPFLAGS="${CPPFLAGS} -I/usr/include/antlr3" \
   --with-antlr=/usr \
   --build=$ARCH-slackware-linux
 
+sed -r -i -e 's,_BSD_SOURCE,_DEFAULT_SOURCE,' ./src/dns.c
 make
 make install DESTDIR=$PKG
 
