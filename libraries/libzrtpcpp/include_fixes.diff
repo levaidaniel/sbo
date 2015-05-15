@@ -1,0 +1,33 @@
+--- zrtpccrtp.h.orig	2015-05-15 15:15:56.232428723 +0200
++++ zrtpccrtp.h	2015-05-15 15:16:05.268388418 +0200
+@@ -19,7 +19,7 @@
+ #define _ZRTPCCRTP_H_
+ 
+ #include <ccrtp/rtp.h>
+-#include <ZrtpQueue.h>
++#include <libzrtpcpp/ZrtpQueue.h>
+ 
+ NAMESPACE_COMMONCPP
+ 
+--- ZrtpCallback.h.orig	2015-05-15 15:18:45.041675768 +0200
++++ ZrtpCallback.h	2015-05-15 15:18:57.243621342 +0200
+@@ -28,7 +28,7 @@
+ #include <string>
+ #include <stdint.h>
+ #include <libzrtpcpp/ZrtpCodes.h>
+-#include <common/osSpecifics.h>
++#include <libzrtpcpp/common/osSpecifics.h>
+ 
+ /**
+  * This enum defines which role a ZRTP peer has.
+--- ZrtpQueue.h.orig	2015-05-15 15:20:57.128086611 +0200
++++ ZrtpQueue.h	2015-05-15 15:21:06.507044777 +0200
+@@ -22,7 +22,7 @@
+ #include <ccrtp/rtppkt.h>
+ #include <libzrtpcpp/ZrtpCallback.h>
+ #include <libzrtpcpp/ZrtpConfigure.h>
+-#include <CcrtpTimeoutProvider.h>
++#include <libzrtpcpp/CcrtpTimeoutProvider.h>
+ 
+ class __EXPORT ZrtpUserCallback;
+ class __EXPORT ZRtp;
