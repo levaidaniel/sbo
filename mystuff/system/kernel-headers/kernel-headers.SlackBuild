@@ -38,7 +38,15 @@ rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 
 cd /usr/src/linux
-VERSION=$(make kernelrelease |tr '-' '_')
+VERSION_SRC=$(make -s kernelrelease)
+VERSION_CUR=$(uname -r)
+if [ "${VERSION_SRC}" != "${VERSION_CUR}" ];then
+	echo "Current kernel(${VERSION_CUR}) and source(${VERSION_SRC}) versions do not match."
+	exit 1
+fi
+VERSION=$(echo ${VERSION_SRC} |tr '-' '_')
+make prepare
+make modules_prepare
 make INSTALL_HDR_PATH=$PKG/usr headers_install
 
 chown -R root:root $PKG
