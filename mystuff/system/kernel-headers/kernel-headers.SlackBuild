@@ -39,7 +39,7 @@ mkdir -p $TMP $PKG $OUTPUT
 
 cd /usr/src/linux
 VERSION_SRC=$(make -s kernelrelease)
-VERSION_CUR=$(uname -r)
+VERSION_CUR=${VERSION_CUR:-$(uname -r)}
 if [ "${VERSION_SRC}" != "${VERSION_CUR}" ];then
 	echo "Current kernel(${VERSION_CUR}) and source(${VERSION_SRC}) versions do not match."
 	exit 1
