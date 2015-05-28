@@ -44,10 +44,10 @@ PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
 
 if [ "${ARCH}" == "i486" ];then
-  SLKCFLAGS='-march=i486 -mtune=i686'
+  SLKCFLAGS='-O2 -march=i486 -mtune=i686'
   LIBDIRSUFFIX=""
 elif [ "$ARCH" == "i686" ]; then
-  SLKCFLAGS="-march=i686 -mtune=i686"
+  SLKCFLAGS="-O2 -march=i686 -mtune=i686"
   LIBDIRSUFFIX=""
 elif [ "${ARCH}" == "x86_64" ];then
   SLKCFLAGS='-fPIC'
@@ -74,6 +74,7 @@ find -L . \
 
 ./configure \
 	--prefix=/usr \
+	--libdir=/usr/lib${LIBDIRSUFFIX} \
 	--mandir=/usr/man
 CFLAGS="$SLKCFLAGS" make
 make install DESTDIR=$PKG
