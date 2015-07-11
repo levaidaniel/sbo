@@ -100,7 +100,8 @@ CFLAGS="-O2 ${SLKCFLAGS}" \
 	--enable-avresample \
 	--enable-libpulse \
 	--enable-libopenjpeg \
-	--enable-x11grab
+	--enable-x11grab \
+	--enable-openssl
 make
 make install DESTDIR=$PKG
 make install-man DESTDIR=$PKG
