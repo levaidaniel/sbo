@@ -1,0 +1,4 @@
+Xzoom displays in its window a magnified area of the X11 display.
+The user can interactively change the zoomed area, the window size,
+magnification (optionally different magnification for X and Y axes) or rotate
+or mirror the image.
