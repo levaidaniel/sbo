@@ -1,12 +1,12 @@
 #!/bin/sh
 
 bluez_start() {
-  /usr/sbin/bluetoothd
+  /usr/libexec/bluetooth/bluetoothd
 }
 
 bluez_stop() {
   udevadm trigger --subsystem-match=bluetooth --action=remove
-  pkill -TERM bluetoothd 1>/dev/null 2>/dev/null
+  pkill -TERM -x bluetoothd 1>/dev/null 2>/dev/null
 }
 
 case "$1" in

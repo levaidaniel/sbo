@@ -24,9 +24,10 @@
 
 PKGNAM=bluez
 VERSION=${VERSION:-$(echo $PKGNAM-*.tar.xz | rev | cut -f 3- -d . | cut -f 1 -d - | rev)}
-BUILD=${BUILD:-2}
+BUILD=${BUILD:-1}
+TAG=${TAG:-_daniell}
 
-NUMJOBS=${NUMJOBS:-" -j7 "}
+NUMJOBS=${NUMJOBS:-" -j4 "}
 
 # Automatically determine the architecture we're building on:
 if [ -z "$ARCH" ]; then
@@ -70,84 +71,49 @@ find . \
   \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
   -exec chmod 644 {} \;
 
-# Enable the audio socket in audio.conf:
-zcat $CWD/bluez.enable.audio.socket.diff.gz | patch -p0 --verbose || exit 1
-
-# Fix the network access point connection problem
-zcat $CWD/nap_dbus_connection.diff.gz | patch -p0 --verbose || exit 1
+set -e
 
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
 ./configure \
+  --build=$ARCH-slackware-linux \
   --prefix=/usr \
   --libdir=/usr/lib${LIBDIRSUFFIX} \
   --sysconfdir=/etc \
   --mandir=/usr/man \
   --localstatedir=/var \
-  --enable-datafiles \
-  --enable-audio \
-  --enable-gstreamer \
-  --enable-alsa \
-  --enable-usb \
-  --enable-tools\
-  --enable-input \
-  --enable-bccmd \
-  --enable-hid2hci \
-  --enable-dfutool \
-  --enable-hidd \
-  --enable-pand \
-  --enable-dund \
-  --enable-cups \
-  --enable-service \
-  --enable-network \
-  --enable-serial \
-  --enable-health \
-  --enable-pnat \
-  --enable-maemo6 \
-  --enable-wiimote \
+  --disable-systemd \
   --enable-test \
-  --enable-dbusoob \
-  --with-ouifile=/usr/share/hwdata/oui.txt \
-  --disable-silent-rules \
-  --build=$ARCH-slackware-linux
+  --enable-library \
+  --enable-threads \
+  --enable-pie \
+  --enable-manpages
 
-make $NUMJOBS || make || exit 1
-make install DESTDIR=$PKG || exit 1
+# Fix linking with readline
+sed -i -e 's,-lreadline,-lreadline -ltermcap,' Makefile
 
-cp scripts/bluetooth-serial.rules $PKG/lib/udev/rules.d/97-bluetooth-serial.rules || exit 1
-cp -a scripts/bluetooth_serial $PKG/lib/udev/bluetooth_serial || exit 1
-chmod 0755 $PKG/lib/udev/bluetooth_serial
+make $NUMJOBS
+make install DESTDIR=$PKG
 
 mkdir -p $PKG/etc/bluetooth
-cp -a audio/audio.conf $PKG/etc/bluetooth
-cp -a input/input.conf $PKG/etc/bluetooth
-cp -a network/network.conf $PKG/etc/bluetooth
-cp -a serial/serial.conf $PKG/etc/bluetooth
+cp -a src/main.conf $PKG/etc/bluetooth/
+cp -a profiles/proximity/proximity.conf $PKG/etc/bluetooth/
+cp -a profiles/input/input.conf $PKG/etc/bluetooth/
+cp -a profiles/network/network.conf $PKG/etc/bluetooth/
 chmod 644 $PKG/etc/bluetooth/*.conf
-
-mkdir -p $PKG/etc/alsa
-mv $PKG/usr/share/alsa/bluetooth.conf $PKG/etc/alsa
-( cd $PKG/usr/share/alsa ; ln -s ../../../etc/alsa/bluetooth.conf . )
 
 # Do not overwrite configuration
 # Well, let the dbus file be overwritten, as it is not usually user-edited.
+    #etc/modprobe.d/bluetooth.conf
 ( cd $PKG
   for file in \
-    etc/alsa/bluetooth.conf \
-    etc/bluetooth/audio.conf \
+    etc/bluetooth/proximity.conf \
     etc/bluetooth/input.conf \
     etc/bluetooth/network.conf \
-    etc/bluetooth/serial.conf \
-    etc/bluetooth/rfcomm.conf \
-    etc/bluetooth/main.conf \
-    etc/modprobe.d/bluetooth.conf ; do 
+    etc/bluetooth/main.conf;do 
       mv ${file} ${file}.new
   done
 )
-
-# Add the wrapper script
-cat $CWD/config/bluetooth.sh > $PKG/lib/udev/bluetooth.sh
-chmod 0755 $PKG/lib/udev/bluetooth.sh
 
 # Add an init script
 mkdir -p $PKG/etc/rc.d
@@ -189,5 +155,4 @@ cat $CWD/slack-desc > $PKG/install/slack-desc
 zcat $CWD/doinst.sh.gz > $PKG/install/doinst.sh
 
 cd $PKG
-/sbin/makepkg -l y -c n $TMP/$PKGNAM-$VERSION-$ARCH-$BUILD.txz
-
+/sbin/makepkg -l y -c n $TMP/$PKGNAM-$VERSION-$ARCH-$BUILD$TAG.txz
