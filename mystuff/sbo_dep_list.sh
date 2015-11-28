@@ -39,7 +39,7 @@ typeset -i FOUND=0
 REQUIRES=''
 
 REPO_TAG='_SBo'
-PACKAGE_INFORMATION=/var/log/packages 
+PACKAGE_INFORMATION=/var/packages/packages 
 
 
 _INSTALLED_PKGS=$( find "${PACKAGE_INFORMATION}" -type f -name "*${REPO_TAG}" -printf "%f " )
