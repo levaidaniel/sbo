@@ -1,8 +1,6 @@
-Index: gq-1.2.3/configure
-===================================================================
---- gq-1.2.3.orig/configure
-+++ gq-1.2.3/configure
-@@ -6167,7 +6167,7 @@ if test "${ac_cv_lib_ssl_SSL_new+set}" =
+--- configure.orig	2016-01-22 13:01:16.902823115 +0100
++++ configure	2016-01-22 13:01:51.035661591 +0100
+@@ -6438,7 +6438,7 @@ if test "${ac_cv_lib_ssl_SSL_new+set}" =
    echo $ECHO_N "(cached) $ECHO_C" >&6
  else
    ac_check_lib_save_LIBS=$LIBS
@@ -11,7 +9,7 @@ Index: gq-1.2.3/configure
  cat >conftest.$ac_ext <<_ACEOF
  /* confdefs.h.  */
  _ACEOF
-@@ -6223,7 +6223,7 @@ fi
+@@ -6494,7 +6494,7 @@ fi
  { echo "$as_me:$LINENO: result: $ac_cv_lib_ssl_SSL_new" >&5
  echo "${ECHO_T}$ac_cv_lib_ssl_SSL_new" >&6; }
  if test $ac_cv_lib_ssl_SSL_new = yes; then

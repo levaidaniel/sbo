@@ -1,39 +1,91 @@
-Index: gq-1.2.3/src/gq-hash.h
-===================================================================
---- gq-1.2.3.orig/src/gq-hash.h
-+++ gq-1.2.3/src/gq-hash.h
+--- ./src/gq-hash.h.orig	2016-01-22 12:58:33.737295029 +0100
++++ ./src/gq-hash.h	2016-01-22 12:58:36.326282778 +0100
 @@ -24,7 +24,7 @@
  #ifndef GQ_ENCRYPTION_H
  #define GQ_ENCRYPTION_H
  
 -#include <glib/garray.h>
 +#include <glib.h>
- #include "util.h"
+ #include "gq-utilities.h"
  
  G_BEGIN_DECLS
-Index: gq-1.2.3/src/gq-server-list.h
-===================================================================
---- gq-1.2.3.orig/src/gq-server-list.h
-+++ gq-1.2.3/src/gq-server-list.h
-@@ -26,7 +26,7 @@
- #ifndef GQ_SERVER_LIST_H
- #define GQ_SERVER_LIST_H
+--- ./src/gq-tab.h.orig	2016-01-22 12:53:46.830652728 +0100
++++ ./src/gq-tab.h	2016-01-22 12:54:02.072580600 +0100
+@@ -24,7 +24,7 @@
+ #ifndef GQ_TAB_H
+ #define GQ_TAB_H
  
 -#include <glib/gmacros.h>
 +#include <glib.h>
- #include "gq-server.h" // for GqServer
  
  G_BEGIN_DECLS
-Index: gq-1.2.3/src/state.c
-===================================================================
---- gq-1.2.3.orig/src/state.c
-+++ gq-1.2.3/src/state.c
-@@ -36,7 +36,7 @@
- #include <errno.h>
  
- #include <glib/gi18n.h>
--#include <glib/gmessages.h>
+--- ./src/glib-helpers.h.orig	2016-01-22 12:57:05.595712132 +0100
++++ ./src/glib-helpers.h	2016-01-22 12:57:12.182680962 +0100
+@@ -24,7 +24,7 @@
+ #ifndef GLIB_HELPERS_H
+ #define GLIB_HELPERS_H
+ 
+-#include <glib/glist.h>
 +#include <glib.h>
- #include <gtk/gtk.h>
  
- #include "xmlparse.h"
+ G_BEGIN_DECLS
+ 
+--- ./src/glib-helpers.c.orig	2016-01-22 12:56:48.709792040 +0100
++++ ./src/glib-helpers.c	2016-01-22 12:56:59.254742139 +0100
+@@ -23,8 +23,7 @@
+ 
+ #include "glib-helpers.h"
+ 
+-#include <glib/gmessages.h>
+-#include <glib/gunicode.h>
++#include <glib.h>
+ 
+ GList*
+ g_list_copy_reversed(GList* list) {
+--- ./src/syntax.h.orig	2016-01-22 12:54:13.941524434 +0100
++++ ./src/syntax.h	2016-01-22 12:54:22.520483837 +0100
+@@ -27,7 +27,7 @@
+ #ifndef GQ_SYNTAX_H_INCLUDED
+ #define GQ_SYNTAX_H_INCLUDED
+ 
+-#include <glib/gmacros.h>
++#include <glib.h>
+ 
+ G_BEGIN_DECLS
+ 
+--- ./src/gq-stack.h.orig	2016-01-22 12:59:55.265040457 +0100
++++ ./src/gq-stack.h	2016-01-22 12:59:59.345060108 +0100
+@@ -24,7 +24,7 @@
+ #ifndef GQ_STACK_H
+ #define GQ_STACK_H
+ 
+-#include <glib/gtypes.h>
++#include <glib.h>
+ 
+ G_BEGIN_DECLS
+ 
+--- ./src/gq-stack.c.orig	2016-01-22 12:59:24.912052860 +0100
++++ ./src/gq-stack.c	2016-01-22 12:59:32.198018381 +0100
+@@ -23,9 +23,7 @@
+ 
+ #include "gq-stack.h"
+ 
+-#include <glib/gmem.h>
+-#include <glib/gmessages.h>
+-#include <glib/glist.h>
++#include <glib.h>
+ 
+ #undef DEBUG_STACK
+ 
+--- ./src/gq-main-loop.h.orig	2016-01-22 12:58:56.273188385 +0100
++++ ./src/gq-main-loop.h	2016-01-22 12:59:02.166160498 +0100
+@@ -24,7 +24,7 @@
+ #ifndef GQ_MAIN_LOOP_H
+ #define GQ_MAIN_LOOP_H
+ 
+-#include <glib/gtypes.h>
++#include <glib.h>
+ 
+ G_BEGIN_DECLS
+ 
