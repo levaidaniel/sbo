@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+                       |-----handy-ruler------------------------------------------------------|
+perl-Net-Google-AuthSub: perl-Net-Google-AuthSub (interact with sites that implement Google
+perl-Net-Google-AuthSub: style AuthSub)
+perl-Net-Google-AuthSub:
+perl-Net-Google-AuthSub: Interact with sites that implement Google style AuthSub. AuthSub is
+perl-Net-Google-AuthSub: Google's method of authentication for their web services. It is also
+perl-Net-Google-AuthSub: used by other web sites.
+perl-Net-Google-AuthSub: You can read more about it here:
+perl-Net-Google-AuthSub: http://code.google.com/apis/accounts/Authentication.html
+perl-Net-Google-AuthSub:
+perl-Net-Google-AuthSub: Homepage: http://search.cpan.org/dist/Net-Google-AuthSub/
+perl-Net-Google-AuthSub:

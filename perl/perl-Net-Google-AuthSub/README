@@ -1,0 +1,8 @@
+Net::Google::AuthSub can be used to interact with sites that implement Google
+style AuthSub.
+
+AuthSub is Google's method of authentication for their web services. It is also
+used by other web sites.
+
+You can read more about it here.
+http://code.google.com/apis/accounts/Authentication.html
