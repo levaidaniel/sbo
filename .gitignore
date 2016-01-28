@@ -20,3 +20,6 @@
 *~
 .directory
 *.phar
+*.build
+*.sbopkg
+*.orig
