@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+                    |-----handy-ruler------------------------------------------------------|
+perl-Log-Any-Adapter: perl-Log-Any-Adapter (tell Log::Any where to send its logs)
+perl-Log-Any-Adapter:
+perl-Log-Any-Adapter: Implements Log::Any class methods to specify where logs should be
+perl-Log-Any-Adapter: sent. It is a separate distribution so as to keep Log::Any itself as
+perl-Log-Any-Adapter: simple and unchanging as possible.
+perl-Log-Any-Adapter:
+perl-Log-Any-Adapter: Homepage: http://search.cpan.org/dist/Log-Any-Adapter/
+perl-Log-Any-Adapter:
+perl-Log-Any-Adapter:
+perl-Log-Any-Adapter:
+perl-Log-Any-Adapter:
