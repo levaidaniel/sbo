@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+                   |-----handy-ruler------------------------------------------------------|
+perl-Test-LeakTrace: perl-Test-LeakTrace (traces memory leaks)
+perl-Test-LeakTrace:
+perl-Test-LeakTrace: Test::LeakTrace provides several functions that trace memory leaks.
+perl-Test-LeakTrace: This module scans arenas, the memory allocation system, so it can
+perl-Test-LeakTrace: detect any leaked SVs in given blocks. Leaked SVs are SVs which are
+perl-Test-LeakTrace: not released after the end of the scope they have been created. These
+perl-Test-LeakTrace: SVs include global variables and internal caches. For example, if you
+perl-Test-LeakTrace: call a method in a tracing block, perl might prepare a cache for the
+perl-Test-LeakTrace: method. Thus, to trace true leaks, no_leaks_ok() and leaks_cmp_ok()
+perl-Test-LeakTrace: executes a block more than once.
+perl-Test-LeakTrace: Homepage: http://search.cpan.org/dist/Test-LeakTrace/
