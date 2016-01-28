@@ -1,0 +1,3 @@
+This distribution provides a testing module that simplifies the process of
+hiding directories and/or modules from access by the block of code being
+tested.
