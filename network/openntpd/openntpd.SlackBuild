@@ -59,19 +59,6 @@ fi
 
 set -e
 
-echo "You must have a user and group called '_ntp' to use this package. E.g.:
-# groupadd -g 217 _ntp
-# useradd -u 217 -m -d /var/empty/openntpd -s /bin/false -g _ntp _ntp"
-
-# Check the user/group if they're present
-egrep -q -e '^_ntp:' /etc/passwd
-egrep -q -e '^_ntp:' /etc/group
-
-# Create the _ntp user's home, and the daemon's chroot directory
-mkdir -p $PKG/var/empty/openntpd
-chown root:root $PKG/var/empty/openntpd
-chmod 0755 $PKG/var/empty/openntpd
-
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
