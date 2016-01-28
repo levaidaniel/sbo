@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+                        |-----handy-ruler------------------------------------------------------|
+perl-WWW-Google-Contacts: perl-WWW-Google-Contacts (Google Contacts API)
+perl-WWW-Google-Contacts:
+perl-WWW-Google-Contacts: This module implements 'Google Contacts Data API' according the 3.0
+perl-WWW-Google-Contacts: Google Contacts API (http://code.google.com/apis/contacts).
+perl-WWW-Google-Contacts:
+perl-WWW-Google-Contacts: Homepage: http://search.cpan.org/dist/WWW-Google-Contacts/
+perl-WWW-Google-Contacts:
+perl-WWW-Google-Contacts:
+perl-WWW-Google-Contacts:
+perl-WWW-Google-Contacts:
+perl-WWW-Google-Contacts:
