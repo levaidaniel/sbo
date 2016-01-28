@@ -55,6 +55,8 @@ find -L . \
 
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
+./bootstrap.sh
+make distclean
 ./configure \
   --disable-static \
   --enable-shared \
