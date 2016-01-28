@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+            |-----handy-ruler------------------------------------------------------|
+perl-Log-Any: perl-Log-Any (bringing loggers and listeners together)
+perl-Log-Any:
+perl-Log-Any: Log::Any allows CPAN modules to safely and efficiently log messages,
+perl-Log-Any: while letting the application choose (or decline to choose) a logging
+perl-Log-Any: mechanism such as Log::Dispatch or Log::Log4perl.
+perl-Log-Any:
+perl-Log-Any: Homepage: http://search.cpan.org/dist/Log-Any/
+perl-Log-Any:
+perl-Log-Any:
+perl-Log-Any:
+perl-Log-Any:
