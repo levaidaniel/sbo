@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+                  |-----handy-ruler------------------------------------------------------|
+perl-Elasticsearch: perl-Elasticsearch (official Perl client for Elasticsearch)
+perl-Elasticsearch:
+perl-Elasticsearch: Elasticsearch is the official Perl client for Elasticsearch,
+perl-Elasticsearch: supported by elasticsearch.com. Elasticsearch itself is a flexible
+perl-Elasticsearch: and powerful open source, distributed real-time search and analytics
+perl-Elasticsearch: engine for the cloud.
+perl-Elasticsearch:
+perl-Elasticsearch: Homepage: http://search.cpan.org/dist/Elasticsearch/
+perl-Elasticsearch:
+perl-Elasticsearch:
+perl-Elasticsearch:

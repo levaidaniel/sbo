@@ -1,0 +1,18 @@
+This is the official Perl client for Elasticsearch, supported by
+elasticsearch.com. Elasticsearch itself is a flexible and powerful open source,
+distributed real-time search and analytics engine for the cloud. You can read
+more about it on elasticsearch.org.
+
+Features:
+
+- Full support for all Elasticsearch APIs
+- HTTP backend (currently synchronous only - Any::Event support will be added
+  later)
+- Robust networking support which handles load balancing, failure detection and
+  failover
+- Good defaults
+- Helper utilities for more complex operations, such as bulk indexing, scrolled
+  searches and reindexing.
+- Logging support via Log::Any
+- Compatibility with the official clients for Python, Ruby, PHP and Javascript
+- Easy extensibility
