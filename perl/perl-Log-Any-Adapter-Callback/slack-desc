@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+                             |-----handy-ruler------------------------------------------------------|
+perl-Log-Any-Adapter-Callback: perl-Log-Any-Adapter-Callback (Send Log::Any logs to a subroutine)
+perl-Log-Any-Adapter-Callback:
+perl-Log-Any-Adapter-Callback: This adapter lets you specify callback subroutine to be called by
+perl-Log-Any-Adapter-Callback: Log::Any's logging methods.
+perl-Log-Any-Adapter-Callback: This adapter is used for customized logging, and is mostly a
+perl-Log-Any-Adapter-Callback: convenient construct to save a few lines of code. You could achieve
+perl-Log-Any-Adapter-Callback: the same effect by creating a full Log::Any adapter class.
+perl-Log-Any-Adapter-Callback:
+perl-Log-Any-Adapter-Callback: Homepage: http://search.cpan.org/dist/Log-Any-Adapter-Callback/
+perl-Log-Any-Adapter-Callback:
+perl-Log-Any-Adapter-Callback:

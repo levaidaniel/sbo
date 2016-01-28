@@ -1,0 +1,7 @@
+This adapter lets you specify callback subroutine to be called by Log::Any's
+logging methods (like $log->debug(), $log->error(), etc) and detection methods
+(like $log->is_warning(), $log->is_fatal(), etc.).
+
+This adapter is used for customized logging, and is mostly a convenient
+construct to save a few lines of code. You could achieve the same effect by
+creating a full Log::Any adapter class.
