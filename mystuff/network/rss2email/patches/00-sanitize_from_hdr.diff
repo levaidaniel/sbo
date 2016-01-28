@@ -1,0 +1,21 @@
+--- rss2email.py.orig	2011-03-04 17:51:22.000000000 +0100
++++ rss2email.py	2014-05-04 11:37:54.779646773 +0200
+@@ -23,6 +23,7 @@ ___contributors__ = ["Dean Jackson", "Br
+                      "Marcel Ackermann (http://www.DreamFlasher.de)", 
+                      "Lindsey Smith (maintainer)", "Erik Hetzner", "Aaron Swartz (original author)" ]
+ 
++import re
+ import urllib2
+ urllib2.install_opener(urllib2.build_opener())
+ 
+@@ -151,6 +152,10 @@ def send(sender, recipient, subject, bod
+ 	# We must always pass Unicode strings to Header, otherwise it will
+ 	# use RFC 2047 encoding even on plain ASCII strings.
+ 	sender_name = str(Header(unicode(sender_name), header_charset))
++	# Strip out invalid characters from the From header, otherwise we won't
++	# be able to send out the email:
++	sender_name = re.sub(r'[<>"\[\]]', "", sender_name)
++
+ 	recipient_name = str(Header(unicode(recipient_name), header_charset))
+ 	
+ 	# Make sure email addresses do not contain non-ASCII characters

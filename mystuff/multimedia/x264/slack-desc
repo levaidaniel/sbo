@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+
+    |-----handy-ruler------------------------------------------------------|
+x264: x264
+x264:
+x264: x264 is a free software library and application for encoding video
+x264: streams into the H.264/MPEG-4 AVC format.
+x264:
+x264: Homepage: http://www.videolan.org/developers/x264.html
+x264:
+x264:
+x264:
+x264:
+x264:

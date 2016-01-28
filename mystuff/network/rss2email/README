@@ -1,0 +1,16 @@
+rss2email is a free tool for delivering news from RSS feeds to your email
+program that works under Windows, UNIX, BSD and Linux.
+
+This Slackbuild installs rss2email's core files under the /usr/lib/rss2email/
+directory. This is to ensure not to clutter up /usr/bin. There is only a helper
+wrapper script installed under /usr/bin, along the name of 'r2e'.
+One must execute r2e with the first parameter being the user's feed database,
+for example:
+$ r2e ~/.rss2email/feeds.dat new user@example.com
+
+The above command will create a new feed database, with the default destination
+email set to user@example.com. One can have multiple feed databases, but must
+specify its path right after /usr/bin/r2e.
+
+Please see the readme.html file under the package's documentation directory for
+more information, examples and help.

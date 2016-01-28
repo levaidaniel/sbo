@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|'
+# on the right side marks the last column you can put a character in.  You must
+# make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':'.
+
+       |-----handy-ruler------------------------------------------------------|
+openpam: openpam (open source PAM library)
+openpam:
+openpam: OpenPAM is an open source PAM library that focuses on simplicity,
+openpam: correctness, and cleanliness. Its aim is to gather the best features
+openpam: of Solaris PAM, XSSO and Linux-PAM, plus some innovations of its own.
+openpam: In areas where these implementations disagree, OpenPAM tries to remain
+openpam: compatible with Solaris, at the expense of XSSO conformance and
+openpam: Linux-PAM compatibility.
+openpam:
+openpam: Homepage: http://www.openpam.org/
+openpam:

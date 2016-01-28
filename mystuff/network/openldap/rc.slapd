@@ -1,0 +1,54 @@
+#!/bin/sh
+
+slapd_start() {
+	[ -e "${PIDFILE}" ]  ||  touch "${PIDFILE}"
+	chown root:slapd "${PIDFILE}"; chmod 660 "${PIDFILE}"
+
+	[ -e "${ARGSFILE}" ]  ||  touch "${ARGSFILE}"
+	chown root:slapd "${ARGSFILE}"; chmod 660 "${ARGSFILE}"
+
+	if [ -x ${BIN} ]; then
+		echo "Starting slapd:  ${BIN} "
+		${BIN} -u slapd -g slapd -f "${CONF}" -h "${LISTEN}"
+	fi
+	pgrep -x slapd >/dev/null  ||  echo "slapd is not running!"
+}
+
+slapd_stop() {
+	echo -n "Stopping slapd ..."
+	if [ -r "${PIDFILE}" ];then
+		kill "$(< ${PIDFILE})"  &&  echo " .. done"
+	else
+		echo -n " no pid file found!"
+		pkill -x $(basename ${BIN})  &&  echo " .. killed"
+	fi
+}
+
+slapd_restart() {
+	slapd_stop
+	sleep 1
+	slapd_start
+}
+
+BIN=/usr/libexec/slapd
+CONF=/etc/openldap/slapd.conf
+#LISTEN="ldap://0.0.0.0 ldaps:/0.0.0.0"
+LISTEN="ldap://0.0.0.0"
+
+PIDFILE=$(egrep -e '^pidfile' "${CONF}" |sed -e 's/^pidfile[[:space:]]\+//')
+ARGSFILE=$(egrep -e '^argsfile' "${CONF}" |sed -e 's/^argsfile[[:space:]]\+//')
+
+case "$1" in
+	'start')
+		slapd_start
+	;;
+	'stop')
+		slapd_stop
+	;;
+	'restart')
+		slapd_restart
+	;;
+	*)
+		echo "usage $0 start|stop|restart"
+	;;
+esac

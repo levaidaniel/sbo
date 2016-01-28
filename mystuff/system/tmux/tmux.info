@@ -1,0 +1,8 @@
+PRGNAM="tmux"
+VERSION="dev"
+HOMEPAGE="http://tmux.sourceforge.net"
+#DOWNLOAD=""
+#DOWNLOAD="git://tmux.git.sourceforge.net/gitroot/tmux/tmux"
+#MD5SUM=""
+MAINTAINER="LEVAI Daniel"
+EMAIL="leva@ecentrum.hu"

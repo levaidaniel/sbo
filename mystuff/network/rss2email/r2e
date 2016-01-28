@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+set -e
+
+
+DATA_FILE=$(realpath "$1")
+shift
+
+cd /usr/lib/rss2email/
+python rss2email.py "${DATA_FILE}" $@

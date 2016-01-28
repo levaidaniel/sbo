@@ -1,0 +1,150 @@
+#!/bin/sh -e
+ 
+# Copyright (c) 2009, 2010 Daniel LEVAI
+# All rights reserved.
+# 
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above copyright
+#       notice, this list of conditions and the following disclaimer in the
+#       documentation and/or other materials provided with the distribution.
+#     * Neither the name of the <organization> nor the
+#       names of its contributors may be used to endorse or promote products
+#       derived from this software without specific prior written permission.
+# 
+# THIS SOFTWARE IS PROVIDED ''AS IS'' AND ANY
+# EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL <copyright holder> BE LIABLE FOR ANY
+# DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+# (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+# ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+set -e
+
+# Build script for tmux
+
+function suexec
+{
+	if [ $(id -ru) != 0 ];then
+		# Choose your su wrapper
+		#SU_WRAPPER="/bin/su -c" # su(1) -c needs the quote characters around the command name
+		SU_WRAPPER="/usr/bin/sudo" # sudo(8) won't work with quote characters around the command name
+
+		echo "=== ${PKG_NAME}(${SU_WRAPPER}): Root privileges needed for: $@"
+		${SU_WRAPPER} $@ # make sure you need the quote characters around the command name
+	fi
+}
+
+# Set initial variables
+WD=$(pwd)
+
+TMP="${TMP:-/tmp}"
+[ -d "${TMP}" ]  ||  mkdir -p "${TMP}"
+
+APP='tmux'
+EXT='.tar.gz'
+DISTFILE="${APP}-dev${EXT}"
+PKG_VERSION='dev'
+PKG_NAME="${APP}-${PKG_VERSION}"
+BUILD="${BUILD:-1}"
+TAG="${TAG:-SBo}"
+PKG_TYPE="${PKG_TYPE:-tgz}"
+
+ARCH="${ARCH:-i486}"
+if [ "${ARCH}" == 'i486' ];then
+	SLKCFLAGS='-O2 -march=i486 -mtune=i686'
+	LIBDIRSUFFIX=''
+elif [ "${ARCH}" == 'i686' ]; then
+	SLKCFLAGS='-O2 -march=i686 -mtune=i686'
+	LIBDIRSUFFIX=''
+elif [ "${ARCH}" == 'x86_64' ];then
+	SLKCFLAGS='-O2 -fPIC'
+	LIBDIRSUFFIX='64'
+fi
+
+OUTPUTDIR="${OUTPUTDIR:-$TMP}"
+[ -d "${OUTPUTDIR}" ]  ||  mkdir -p "${OUTPUTDIR}"
+
+
+cd "${TMP}"
+
+[ -d "${TMP}/${DISTFILE%%$EXT}" ]  &&  rm -Rf "${TMP}/${DISTFILE%%$EXT}"
+echo "=== ${PKG_NAME}: "'Extracting...'
+UNPACK_CMD=''
+if echo "${EXT}" |egrep -q '\.gz$';then
+        UNPACK_CMD='gzip -dc'
+elif echo "${EXT}" |egrep -q '\.bz2$';then
+        UNPACK_CMD='bzip2 -dc'
+fi
+if echo "${EXT}" |egrep -q '\.tar\.[[:alnum:]]+$';then
+        ${UNPACK_CMD} < "${WD}/${DISTFILE}" |tar -xv
+elif echo "${EXT}" |egrep -q '\.cpio\.[[:alnum:]]+$';then
+        ${UNPACK_CMD} < "${WD}/${DISTFILE}" |cpio -dimvu
+fi
+
+# Change to the application source directory
+cd "${DISTFILE%%$EXT}"
+
+PKG_VERSION="$(git describe |cut -d'-' -f1,2 |tr '-' '_')"
+PKG_NAME="${APP}-${PKG_VERSION}"
+
+PKGDIR="${TMP}/slackbuild_${PKG_NAME}"
+[ -d "${PKGDIR}" ]  &&  rm -Rf "${PKGDIR}"
+mkdir -p "${PKGDIR}"
+
+
+#echo "=== ${PKG_NAME}: "'Patching...'
+#for patch in "${WD}"/patches/*;do
+#	echo "=== ${PKG_NAME}(Patching): Applying '$(basename ${patch})'..."
+#	patch < "${patch}"
+#done
+
+
+echo "=== ${PKG_NAME}: "'Configuring...'
+sh ./autogen.sh
+CFLAGS="${SLKCFLAGS}" \
+	./configure --prefix /usr --mandir /usr/man
+echo "=== ${PKG_NAME}: "'Compiling...'
+make -j4
+make install PREFIX=/usr DESTDIR="${PKGDIR}"
+
+
+echo "=== ${PKG_NAME}: "'Creating the package directory tree...'
+# Documentation
+DOCDIR="${PKGDIR}/usr/doc/${PKG_NAME}"
+mkdir -p "${DOCDIR}"
+cp -a CHANGES FAQ TODO \
+	"${DOCDIR}"/
+cp -a "${WD}/${APP}.SlackBuild" "${DOCDIR}"/
+find "${DOCDIR}" -type f -exec chmod 644 {} \;
+
+MANDIR="${PKGDIR}/usr/man"
+find "${MANDIR}" -type f -exec chmod 644 {} \;
+
+# "install" directory
+mkdir -p "${PKGDIR}/install"
+[ -r "${WD}/slack-desc" ]  &&  cp -a "${WD}/slack-desc" "${PKGDIR}/install/slack-desc"
+[ -r "${WD}/doinst.sh" ]  &&  cp -a "${WD}/doinst.sh" "${PKGDIR}/install/doinst.sh"
+
+# post-processing the files
+find "${PKGDIR}"/usr/bin/ -type f -exec strip --strip-unneeded {} \;
+find "${MANDIR}" -type f -exec gzip -9 {} \;
+suexec "chmod -R u=rwX,g=rX,o=rX ${PKGDIR}"
+suexec "chown -R root:root ${PKGDIR}"
+
+
+echo "=== ${PKG_NAME}: "'Creating the package...'
+cd ${PKGDIR}
+/sbin/makepkg --linkadd y --chown n "${OUTPUTDIR}/${PKG_NAME}-${ARCH}-${BUILD}_${TAG}.${PKG_TYPE}"
+
+
+echo "=== ${PKG_NAME}: "'Cleaning up...'
+cd "${TMP}"
+rm -Rf ./"${DISTFILE%%$EXT}"
+suexec "rm -Rf ${PKGDIR}"

@@ -1,0 +1,11 @@
+--- a/spectrwm.c.orig	2014-03-28 20:26:48.978785841 +0100
++++ b/spectrwm.c	2014-03-28 20:27:38.572789021 +0100
+@@ -2190,7 +2190,7 @@ bar_urgent(char *s, size_t sz)
+ 		if (urgent[i])
+ 			snprintf(b, sizeof b, "%d ", i + 1);
+ 		else
+-			snprintf(b, sizeof b, "- ");
++			snprintf(b, sizeof b, "");
+ 		strlcat(s, b, sz);
+ 	}
+ }
