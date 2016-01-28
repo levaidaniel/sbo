@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+                |-----handy-ruler------------------------------------------------------|
+perl-XML-Hash-XS: perl-XML-Hash-XS (convert hash to xml and xml to hash using LibXML)
+perl-XML-Hash-XS:
+perl-XML-Hash-XS: This module implements simple hash to XML converter written in C
+perl-XML-Hash-XS: using libxml2 library.
+perl-XML-Hash-XS:
+perl-XML-Hash-XS: Homepage: http://search.cpan.org/dist/XML-Hash-XS/
+perl-XML-Hash-XS:
+perl-XML-Hash-XS:
+perl-XML-Hash-XS:
+perl-XML-Hash-XS:
+perl-XML-Hash-XS:

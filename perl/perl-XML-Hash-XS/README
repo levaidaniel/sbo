@@ -1,0 +1,4 @@
+Simple and fast hash to XML conversion.
+
+This module implements simple hash to XML converter written in C using libxml2
+library.
