@@ -3,7 +3,7 @@
 # Slackware build script for easytag
 
 # Copyright 2006  Halim Issa <yallaone@gmail.com>
-# Copyright 2013-2014 LEVAI Daniel <leva@ecentrum.hu>
+# Copyright 2013-2015 LEVAI Daniel <leva@ecentrum.hu>
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -24,7 +24,7 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=easytag
-VERSION=${VERSION:-2.4.0}
+VERSION=${VERSION:-2.4.1}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
