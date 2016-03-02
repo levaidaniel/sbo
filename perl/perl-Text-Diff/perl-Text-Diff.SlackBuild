@@ -1,7 +1,7 @@
 #!/bin/sh
 
 PRGNAM=perl-Text-Diff
-VERSION=${VERSION:-1.43}
+VERSION=${VERSION:-1.44}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
