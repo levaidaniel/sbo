@@ -102,6 +102,7 @@ CFLAGS="-O2 ${SLKCFLAGS}" \
 	--enable-libpulse \
 	--enable-libopenjpeg \
 	--enable-libopus \
+	--enable-libwebp \
 	--enable-x11grab \
 	--enable-openssl
 make
