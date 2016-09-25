@@ -1,7 +1,7 @@
 #!/bin/sh
 
 PRGNAM=perl-Log-Any
-VERSION=${VERSION:-1.040}
+VERSION=${VERSION:-1.042}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
