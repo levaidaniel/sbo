@@ -1,0 +1,11 @@
+--- config.def.h.orig	2016-08-14 12:57:39.017563973 +0200
++++ config.def.h	2016-08-14 12:58:37.591371654 +0200
+@@ -430,7 +430,7 @@ static Key key[] = {
+  * If no match is found, regular selection is used.
+  */
+ static uint selmasks[] = {
+-	[SEL_RECTANGULAR] = Mod1Mask,
++	[SEL_RECTANGULAR] = ControlMask,
+ };
+ 
+ /*

@@ -1,0 +1,29 @@
+--- st.c.orig	2014-04-06 06:50:43.310577421 +0200
++++ st.c	2014-04-06 06:50:57.879578355 +0200
+@@ -1908,9 +1908,11 @@ tsetmode(bool priv, bool set, int *args,
+ 				MODBIT(term.mode, set, MODE_CRLF);
+ 				break;
+ 			default:
++				/*
+ 				fprintf(stderr,
+ 					"erresc: unknown set/reset mode %d\n",
+ 					*args);
++				*/
+ 				break;
+ 			}
+ 		}
+
+--- st.c.orig	2014-04-06 06:54:55.116593570 +0200
++++ st.c	2014-04-06 06:55:09.937594521 +0200
+@@ -1886,9 +1886,11 @@ tsetmode(bool priv, bool set, int *args,
+ 				      and can be mistaken for other control
+ 				      codes. */
+ 			default:
++				/*
+ 				fprintf(stderr,
+ 					"erresc: unknown private set/reset mode %d\n",
+ 					*args);
++				*/
+ 				break;
+ 			}
+ 		} else {

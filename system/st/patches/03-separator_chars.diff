@@ -1,0 +1,11 @@
+--- config.def.h.orig	2016-08-14 12:57:39.017563973 +0200
++++ config.def.h	2016-08-14 12:58:37.591371654 +0200
+@@ -32,7 +32,7 @@ static float chscale = 1.0;
+  *
+  * More advanced example: " `'\"()[]{}"
+  */
+-static char worddelimiters[] = " ";
++static char worddelimiters[] = " `'\"()[]{}<>|,;";
+ 
+ /* selection timeouts (in milliseconds) */
+ static unsigned int doubleclicktimeout = 300;
