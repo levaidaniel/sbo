@@ -94,7 +94,6 @@ CFLAGS="-O2 ${SLKCFLAGS}" \
 	--enable-libtheora \
 	--enable-libmp3lame \
 	--enable-libspeex \
-	--enable-libfaac \
 	--enable-libfdk-aac \
 	--enable-libvpx \
 	--enable-postproc \
