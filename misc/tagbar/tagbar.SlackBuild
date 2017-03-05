@@ -28,7 +28,7 @@
 # Build script for tagbar
 
 PRGNAM=tagbar
-VERSION=${VERSION:-2.6.1}
+VERSION=${VERSION:-2.7}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
