@@ -28,7 +28,7 @@
 PRGNAM=x264
 VERSION=dev
 BUILD=${BUILD:-1}
-TAG=${TAG:-_SBo}
+TAG=${TAG:-daniell}
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
