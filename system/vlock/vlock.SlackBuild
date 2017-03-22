@@ -95,6 +95,9 @@ sed -i 's,<cucul.h>,<caca.h>,' modules/caca.c
 # the caca plugin when the -t/--timeout option is passed.
 patch -p1 < $CWD/fix_caca.diff
 
+# slackware-current's libcaca doesn't have cucul* anymore
+sed -i -e 's/cucul/caca/g' modules/caca.c
+
 # patch from Debian, fixes a segfault when trying to start up the
 # caca plugin.
 patch -p1 < $CWD/10_fix-buffer-overflow.patch
