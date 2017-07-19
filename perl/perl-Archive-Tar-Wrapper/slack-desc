@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+                        |-----handy-ruler------------------------------------------------------|
+perl-Archive-Tar-Wrapper: perl-Archive-Tar-Wrapper (API wrapper around the 'tar' utility)
+perl-Archive-Tar-Wrapper:
+perl-Archive-Tar-Wrapper: Archive::Tar::Wrapper is an API wrapper around the 'tar' command line
+perl-Archive-Tar-Wrapper: utility. It never stores anything in memory, but works on temporary
+perl-Archive-Tar-Wrapper: directory structures on disk instead. It provides a mapping between
+perl-Archive-Tar-Wrapper: the logical paths in the tarball and the 'real' files in the
+perl-Archive-Tar-Wrapper: temporary directory on disk.
+perl-Archive-Tar-Wrapper:
+perl-Archive-Tar-Wrapper: Homepage: https://metacpan.org/release/Archive-Tar-Wrapper
+perl-Archive-Tar-Wrapper:
+perl-Archive-Tar-Wrapper:

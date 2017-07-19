@@ -1,0 +1,4 @@
+Archive::Tar::Wrapper is an API wrapper around the 'tar' command line utility.
+It never stores anything in memory, but works on temporary directory
+structures on disk instead. It provides a mapping between the logical paths in
+the tarball and the 'real' files in the temporary directory on disk.
