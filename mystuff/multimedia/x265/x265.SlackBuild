@@ -78,7 +78,7 @@ type hg  ||  exit 1
 (
 cd build
 CFLAGS="${SLKCFLAGS}" \
-cmake -DCMAKE_INSTALL_PREFIX=/usr ../source/
+cmake -DLIB_INSTALL_DIR=/usr/lib${LIBDIRSUFFIX} -DCMAKE_INSTALL_PREFIX=/usr ../source/
 make
 make install DESTDIR=$PKG
 )
