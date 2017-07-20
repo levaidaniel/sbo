@@ -87,7 +87,7 @@ CFLAGS="-O2 ${SLKCFLAGS}" \
 	--disable-static \
 	--enable-shared \
 	--enable-libx264 \
-	--enable-libxvid \
+	--enable-libx265 \
 	--enable-gpl \
 	--enable-nonfree \
 	--enable-libvorbis \
