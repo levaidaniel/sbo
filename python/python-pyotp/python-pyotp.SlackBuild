@@ -4,7 +4,7 @@
 # Copyright 2017 Lévai Dániel <leva@ecentrum.hu>
 
 PRGNAM=python-pyotp
-VERSION=${VERSION:-2.2.4}
+VERSION=${VERSION:-2.2.6}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
