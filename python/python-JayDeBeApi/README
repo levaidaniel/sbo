@@ -1,0 +1,10 @@
+The JayDeBeApi module allows you to connect from Python code to databases
+using Java JDBC. It provides a Python DB-API v2.0 to that database.
+
+It works on ordinary Python (cPython) using the JPype Java integration or on
+Jython to make use of the Java JDBC driver.
+
+In contrast to zxJDBC from the Jython project JayDeBeApi let’s you access a
+database with Jython AND Python with only minor code modifications.
+JayDeBeApi’s future goal is to provide a unique and fast interface to
+different types of JDBC-Drivers through a flexible plug-in mechanism.
