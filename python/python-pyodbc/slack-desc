@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+             |-----handy-ruler------------------------------------------------------|
+python-pyodbc: python-pyodbc (DB API Module for ODBC)
+python-pyodbc:
+python-pyodbc: A Python DB API 2 module for ODBC. This project provides an
+python-pyodbc: up-to-date, convenient interface to ODBC using native data types like
+python-pyodbc: datetime and decimal.
+python-pyodbc:
+python-pyodbc:
+python-pyodbc:
+python-pyodbc:
+python-pyodbc: Homepage: https://pypi.python.org/pypi/pyodbc
+python-pyodbc:
