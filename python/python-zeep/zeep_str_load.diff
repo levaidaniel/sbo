@@ -1,0 +1,11 @@
+--- build/lib/zeep/xsd/visitor.py.orig	2017-08-14 16:39:23.400684794 +0200
++++ build/lib/zeep/xsd/visitor.py	2017-08-03 16:40:55.692290990 +0200
+@@ -526,7 +526,7 @@ class SchemaVisitor(object):
+             '__module__': 'zeep.xsd.dynamic_types',
+             '_xsd_name': qname,
+         }
+-        xsd_cls = type(name, (xsd_types.ComplexType,), cls_attributes)
++        xsd_cls = type(str(name), (xsd_types.ComplexType,), cls_attributes)
+         xsd_type = None
+ 
+         # Process content
