@@ -127,7 +127,7 @@ echo "=== ${PKG_NAME}: "'Creating the package directory tree...'
 # Documentation
 DOCDIR="${PKGDIR}/usr/doc/${PKG_NAME}"
 mkdir -p "${DOCDIR}"
-cp -a CHANGES FAQ TODO \
+cp -a README CHANGES SYNCING TODO \
 	"${DOCDIR}"/
 cp -a "${WD}/${APP}.SlackBuild" "${DOCDIR}"/
 find "${DOCDIR}" -type f -exec chmod 644 {} \;
