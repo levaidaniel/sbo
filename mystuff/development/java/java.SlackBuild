@@ -49,9 +49,9 @@ else
 fi
 
 PKGNAM=$(basename $SOURCETGZ | cut -f 1 -d -)
-VERSION=$(basename $SOURCETGZ | cut -f 2 -d -)
-DVER=$(tar tf $SOURCETGZ | head -n 1 | cut -f 2 -d $(echo $PKGNAM | cut -b 3) | cut -f 1 -d /)
-JAVA_ARCH=$(basename $SOURCETGZ | cut -f 4 -d - | cut -f 1 -d .)
+VERSION=$(basename $SOURCETGZ | tr _ - | cut -f 2 -d -)
+DVER=$VERSION
+JAVA_ARCH=$(basename $SOURCETGZ | tr _ - | cut -f 4 -d -)
 if [ "$JAVA_ARCH" = "x64" ]; then
   LIB_ARCH=amd64
   ARCH=x86_64
@@ -80,8 +80,8 @@ find $PKG \
   -exec chmod 644 {} \;
 chmod 755 $PKG/etc/profile.d/*
 ( cd $PKG/usr/lib${LIBDIRSUFFIX}
-  mv ${PKGNAM}${DVER} java || exit 1
-  ln -sf java ${PKGNAM}${DVER}
+  mv ${PKGNAM}-${DVER} java || exit 1
+  ln -sf java ${PKGNAM}-${DVER}
 ) || exit 1
 mkdir -p $PKG/usr/lib${LIBDIRSUFFIX}/mozilla/plugins
 ( cd $PKG/usr/lib${LIBDIRSUFFIX}/mozilla/plugins
