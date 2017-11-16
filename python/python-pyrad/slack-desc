@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.
+# Line up the first '|' above the ':' following the base package name, and
+# the '|' on the right side marks the last column you can put a character in.
+# You must make exactly 11 lines for the formatting to be correct.  It's also
+# customary to leave one space after the ':' except on otherwise blank lines.
+
+            |-----handy-ruler------------------------------------------------------|
+python-pyrad: python-pyrad (radius client/server)
+python-pyrad:
+python-pyrad: pyrad is an implementation of a RADIUS client/server as described in
+python-pyrad: RFC2865. It takes care of all the details like building RADIUS
+python-pyrad: packets, sending them and decoding responses.
+python-pyrad:
+python-pyrad:
+python-pyrad:
+python-pyrad:
+python-pyrad: Homepage: https://pypi.python.org/pypi/pyrad
+python-pyrad:
