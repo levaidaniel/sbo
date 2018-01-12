@@ -92,7 +92,6 @@ CFLAGS="-O2 ${SLKCFLAGS}" \
 	--enable-nonfree \
 	--enable-libvorbis \
 	--enable-libtheora \
-	--enable-libmp3lame \
 	--enable-libspeex \
 	--enable-libfdk-aac \
 	--enable-libvpx \
