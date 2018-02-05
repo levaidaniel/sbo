@@ -1,16 +1,28 @@
 #!/bin/sh
 # Start/stop/restart opensmtpd
 
+PID=$(pgrep -f /usr/sbin/smtpd)
+
 smtpd_start() {
-  if [ -x /usr/sbin/smtpd ]; then
-    echo "Starting OpenSMTPD:  /usr/sbin/smtpd"
-    /usr/sbin/smtpd
-  fi
+	if [ -n "${PID}" ]; then
+		echo "It seems OpenSMTPD is already running. PID=${PID}"
+		exit 1
+	fi
+	if [ -x /usr/sbin/smtpd ]; then
+		echo "Starting OpenSMTPD:  /usr/sbin/smtpd"
+		/usr/sbin/smtpd
+	fi
 }
 
 smtpd_stop() {
-  echo "Stopping OpenSMTPD"
-  /usr/sbin/smtpctl stop 1>/dev/null 2>/dev/null || /usr/bin/pkill smtpd
+	if [ -z "${PID}" ]; then
+		echo "It seems OpenSMTPD is not running."
+		exit 1
+	fi
+	if [ -n "${PID}" ]; then
+		echo "Stopping OpenSMTPD"
+		/usr/bin/pkill -x smtpd
+	fi
 }
 
 # Restart smtpd:
