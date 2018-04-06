@@ -1,6 +1,6 @@
---- config.def.h.orig	2016-08-14 12:57:39.017563973 +0200
-+++ config.def.h	2016-08-14 12:58:37.591371654 +0200
-@@ -430,7 +430,7 @@ static Key key[] = {
+--- config.def.h.orig	2018-03-20 21:29:59.000000000 +0100
++++ config.def.h	2018-04-06 12:38:38.628332913 +0200
+@@ -449,7 +449,7 @@ static Key key[] = {
   * If no match is found, regular selection is used.
   */
  static uint selmasks[] = {

@@ -4,8 +4,8 @@
   *
   * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
   */
--static char font[] = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
-+static char font[] = "Terminus:style=Regular:pixelsize=14:antialias=false:autohint=false";
+-static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
++static char *font = "Terminus:style=Regular:pixelsize=14:antialias=false:autohint=false";
  static int borderpx = 2;
  
  /*
