@@ -1,5 +1,5 @@
---- st.c.orig	2018-03-20 21:29:59.000000000 +0100
-+++ st.c	2018-04-06 12:39:48.783729858 +0200
+--- a/st.c.orig	2018-03-20 21:29:59.000000000 +0100
++++ b/st.c	2018-04-06 12:39:48.783729858 +0200
 @@ -1568,9 +1568,11 @@ tsetmode(int priv, int set, int *args, i
  				      and can be mistaken for other control
  				      codes. */
