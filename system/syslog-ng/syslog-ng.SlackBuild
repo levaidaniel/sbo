@@ -136,6 +136,7 @@ CXXFLAGS="$SLKCFLAGS" \
   --enable-dynamic-linking \
   --with-embedded-crypto \
   --enable-json=system --with-jsonc=system \
+  --disable-amqp \
   $GEOIP $DEBUG $SQL $MONGODB \
   $RIEMANN $JAVA $SPOOF_SOURCE \
   --build=$ARCH-slackware-linux
