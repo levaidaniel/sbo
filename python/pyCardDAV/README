@@ -1,0 +1,7 @@
+pyCardDAV is a simple to use CardDAV CLI client. It has built in support for
+mutt's query_command but also works very well solo (and with other MUAs).
+
+pyCardDAV consists of pycardsyncer, a program for syncing your CardDAV
+resource into a local database and of pc_query, a program for querying the
+local database. pyCardDAV is some ugly python code (actually, it's not that
+bad anymore...) that holds together vobject, lxml, requests and pysqlite.
