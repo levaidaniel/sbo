@@ -1,5 +1,5 @@
 PRGNAM="perl-PAR-Packer"
-VERSION="1.015"
+VERSION="1.047"
 HOMEPAGE="https://metacpan.org/pod/PAR-Packer"
 DOWNLOAD="https://cpan.metacpan.org/authors/id/R/RS/RSCHUPP/PAR-Packer-1.047.tar.gz"
 MD5SUM="103a265266464dc6cbfd9dfb13b800f3"

@@ -1,5 +1,5 @@
 PRGNAM="perl-Getopt-ArgvFile"
-VERSION="1.015"
+VERSION="1.11"
 HOMEPAGE="https://metacpan.org/pod/Getopt::ArgvFile"
 DOWNLOAD="https://cpan.metacpan.org/authors/id/J/JS/JSTENZEL/Getopt-ArgvFile-1.11.tar.gz"
 MD5SUM="42117db2af4a24c062b2da25d4fdf756"
