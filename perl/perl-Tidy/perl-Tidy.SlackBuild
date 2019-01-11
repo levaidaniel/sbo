@@ -4,7 +4,7 @@
 # Written by Joey Trungale <joey@trungale.net>
 
 PRGNAM=perl-Tidy
-VERSION=${VERSION:-20130922}
+VERSION=${VERSION:-20180220}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
