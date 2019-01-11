@@ -1,8 +1,8 @@
 PRGNAM="ClusterSSH"
-VERSION="4.09"
+VERSION="4.13.2"
 HOMEPAGE="https://github.com/duncs/clusterssh/wiki"
-DOWNLOAD="http://downloads.sourceforge.net/clusterssh/App-ClusterSSH-4.09.tar.gz"
-MD5SUM="557e8440b246f4122c2decf6cc61730a"
+DOWNLOAD="http://downloads.sourceforge.net/clusterssh/App-ClusterSSH-v4.13.2.tar.gz"
+MD5SUM="39e0983fcd3fd4566d1b45c86ad9fc32"
 DOWNLOAD_x86_64=""
 MD5SUM_x86_64=""
 REQUIRES="perl-Try-Tiny perl-x11-protocol perl-File-Which perl-Test-Pod perl-Test-Pod-Coverage perl-CPAN-Changes \
