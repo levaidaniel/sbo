@@ -24,7 +24,7 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=protonmail-bridge
-VERSION=${VERSION:-1.1.4}
+VERSION=${VERSION:-1.1.5}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -71,7 +71,7 @@ find -L . \
  -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
 # change something else, customize, etc...
-if ! $(getent passwd protonmail-bridge);then
+if ! getent passwd protonmail-bridge;then
 	echo "# useradd --home-dir /var/protonmail-bridge --no-create-home --shell /sbin/nologin protonmail-bridge"
 	echo "# mkdir -m 750 /var/protonmail-bridge; chown protonmail-bridge:protonmail-bridge /var/protonmail-bridge"
 	exit 1
