@@ -83,7 +83,6 @@ CFLAGS="-O2 ${SLKCFLAGS}" \
 	--docdir=/usr/doc/$PRGNAM-$VERSION/html \
 	--mandir=/usr/man \
 	--disable-debug \
-	--enable-shared \
 	--disable-static \
 	--enable-shared \
 	--enable-libx264 \
