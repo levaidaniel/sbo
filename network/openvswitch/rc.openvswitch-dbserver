@@ -56,7 +56,7 @@ function _start()
 	sleep 1
 
 	echo -n " started ${NAME}, "
-	
+
 	[ -r "${PID_FILE}" ]  &&  WRITTEN_PID=$(< ${PID_FILE})
 
 	if [ ${WRITTEN_PID} -gt 1 ];then
