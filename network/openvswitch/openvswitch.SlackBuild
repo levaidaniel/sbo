@@ -70,13 +70,6 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
  -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
-# change something else, customize, etc...
-#if ! getent passwd protonmail-bridge;then
-#	echo "# useradd --home-dir /var/protonmail-bridge --no-create-home --shell /sbin/nologin protonmail-bridge"
-#	echo "# mkdir -m 750 /var/protonmail-bridge; chown protonmail-bridge:protonmail-bridge /var/protonmail-bridge"
-#	exit 1
-#fi
-
 ./configure \
 	--prefix=/usr \
 	--sysconfdir=/etc \
@@ -88,9 +81,13 @@ find -L . \
 make
 make install DESTDIR=$PKG
 
-cat $CWD/openvswitch.logrotate >/etc/logrotate.d/openvswitch.new
-cat $CWD/rc.openvswitch-dbserver >/etc/rc.d/rc.openvswitch-dbserver.new
-cat $CWD/rc.openvswitch-vswitchd >/etc/rc.d/rc.openvswitch-vswitchd.new
+mkdir -p $PKG/etc/logrotate.d
+cat $CWD/openvswitch.logrotate >$PKG/etc/logrotate.d/openvswitch.new
+
+mkdir -p $PKG/etc/rc.d
+cat $CWD/rc.openvswitch-dbserver >$PKG/etc/rc.d/rc.openvswitch-dbserver.new
+cat $CWD/rc.openvswitch-vswitchd >$PKG/etc/rc.d/rc.openvswitch-vswitchd.new
+
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 mv README.rst $PKG/usr/doc/$PRGNAM-$VERSION/
