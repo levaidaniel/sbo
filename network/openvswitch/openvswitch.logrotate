@@ -1,0 +1,8 @@
+/var/log/openvswitch/*.log {
+    missingok
+    daily
+    sharedscripts
+    postrotate
+	/usr/sbin/syslog-ng-ctl reload
+    endscript
+}

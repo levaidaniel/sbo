@@ -1,0 +1,150 @@
+#!/bin/sh
+
+DEFAULT_FILE='/etc/default/openvswitch-vswitchd'
+if [ -r "${DEFAULT_FILE}" ];then
+	. "${DEFAULT_FILE}"
+fi
+
+NAME='openvswitch-vswitchd'
+BIN='/usr/sbin/ovs-vswitchd'
+RUNNING_PID=0
+typeset -i WRITTEN_PID=1
+
+if [ -n "${UMASK}" ];then
+	umask ${UMASK}
+fi
+
+function _pre_check()
+{
+	if [ ! -e "${DBSERVER_SOCKET}" ];then
+		echo "openvswitch-dbserver doesn't seem to be running!"
+		exit 1
+	fi
+}
+
+function _check()
+{
+	RUNNING_PID=$(/usr/bin/pgrep -f "${BIN}")
+	typeset -i RUNNING_PID_COUNT=$(echo "${RUNNING_PID}" |wc -w)
+
+
+	if [ ${RUNNING_PID_COUNT} -lt 1 ];then
+		return 0
+	elif [ ${RUNNING_PID_COUNT} -eq 1 ];then
+		return 1
+	elif [ ${RUNNING_PID_COUNT} -gt 1 ];then
+		return 2
+	fi
+}
+
+function _start()
+{
+	_pre_check;
+	_check;
+	case $? in
+		1)
+			echo " there is already a ${NAME} running: ${RUNNING_PID}"
+			exit 1
+		;;
+		2)
+			echo " there are more than one ${NAME} running: ${RUNNING_PID}"
+			exit 1
+		;;
+	esac
+
+	$BIN --detach --pidfile="${PID_FILE}"
+	sleep 1
+
+	echo -n " started ${NAME}, "
+	
+	[ -r "${PID_FILE}" ]  &&  WRITTEN_PID=$(< ${PID_FILE})
+
+	if [ ${WRITTEN_PID} -gt 1 ];then
+		echo "running (${WRITTEN_PID})"
+	else
+		echo "Couldn't figure out PID for ${NAME}"
+		exit 1
+	fi
+}
+
+function _stop()
+{
+	_check;
+	case $? in
+		0)
+			echo " there doesn't seem to be any ${NAME} running"
+			exit 1
+		;;
+		2)
+			echo " there are more than one ${NAME} running: ${RUNNING_PID}"
+			exit 1
+		;;
+	esac
+
+	typeset -i COUNTER=1
+	typeset -i MAX_TRIES=10
+
+	[ -r "${PID_FILE}" ]  &&  WRITTEN_PID=$(< ${PID_FILE})
+
+	if [ ${RUNNING_PID} -eq ${WRITTEN_PID} ];then
+		/usr/bin/pkill --pidfile "${PID_FILE}"
+		while /usr/bin/pgrep -f "${BIN}" >/dev/null;do
+			sleep 0.5
+			echo -n ' ...'
+
+			COUNTER=$(( COUNTER + 1 ))
+			[ ${COUNTER} -gt ${MAX_TRIES} ]  &&  break
+		done
+
+		if [ ${COUNTER} -gt ${MAX_TRIES} ];then
+			echo " couldn't stop ${NAME}"
+			exit 1
+		else
+			echo " stopped ${NAME}"
+		fi
+	else
+		echo " couldn't figure out PID for ${NAME}"
+		exit 1
+	fi
+}
+
+case "$1" in
+	start)
+		echo -n "Starting ${NAME} ..."
+		_start;
+	;;
+	stop)
+		echo -n "Stopping ${NAME} ..."
+		_stop;
+	;;
+	reload)
+		echo -n "Reloading is not implemented for ${NAME}!"
+		exit 1
+	;;
+	restart)
+		echo -n "Stopping ${NAME} ..."
+		_stop;
+
+		echo -n "Starting ${NAME} ..."
+		_start;
+	;;
+	check|status)
+		_check;
+		case $? in
+			0)
+				echo "There doesn't seem to be any ${NAME} running"
+			;;
+			1)
+				echo "Found ${NAME} running: ${RUNNING_PID}"
+			;;
+			2)
+				echo "There are more than one ${NAME} running: ${RUNNING_PID}"
+			;;
+		esac
+	;;
+	*)
+		echo "$0 <start|stop|restart|reload>"
+	;;
+esac
+
+exit 0
