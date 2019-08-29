@@ -1,0 +1,151 @@
+#!/bin/sh
+
+# Copyright (c) 2012-2014 LEVAI Daniel
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above copyright
+#       notice, this list of conditions and the following disclaimer in the
+#       documentation and/or other materials provided with the distribution.
+#     * Neither the name of the <organization> nor the
+#       names of its contributors may be used to endorse or promote products
+#       derived from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED ''AS IS'' AND ANY
+# EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY
+# DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+# (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+# ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+PRGNAM=ffmpeg
+POSTFIX=camera
+VERSION=dev
+BUILD=${BUILD:-1}
+TAG=${TAG:-daniell}
+
+if [ -z "$ARCH" ]; then
+  case "$( uname -m )" in
+    i686) ARCH=i686 ;;
+    i?86) ARCH=i486 ;;
+    arm*) ARCH=arm ;;
+       *) ARCH=$( uname -m ) ;;
+  esac
+fi
+
+CWD=$(pwd)
+TMP=${TMP:-/tmp/SBo}
+PKG=$TMP/package-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+
+if [ "$ARCH" = "i586" ]; then
+   SLKCFLAGS="-O2 -march=i586 -mtune=i686"
+elif [ "$ARCH" = "i686" ]; then
+   SLKCFLAGS="-O2 -march=i686 -mtune=i686"
+elif [ "$ARCH" = "x86_64" ]; then
+   SLKCFLAGS="-O2 -fPIC"
+fi
+
+set -e
+
+rm -Rf $PKG
+mkdir -p $TMP $PKG $OUTPUT
+cd $TMP
+rm -Rf $PRGNAM-$VERSION
+tar xvf $CWD/${PRGNAM}-${VERSION}.tar.gz
+cd $PRGNAM-$VERSION
+chown -R root:root .
+find -L . \
+ \( -perm 777 -o -perm 775 -o -perm 750 -o -perm 711 -o -perm 555 -o -perm 511 \) \
+ -exec chmod 755 {} \; -o \
+ \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
+ -exec chmod 644 {} \;
+
+VERSION=$(./ffbuild/version.sh |cut -d- -f2)
+
+CXXFLAGS="${SLKCFLAGS}" \
+CFLAGS="${SLKCFLAGS}" \
+	./configure \
+	--prefix=/usr/local/ffmpeg-camera \
+	--disable-static \
+	--enable-shared \
+	--disable-runtime-cpudetect \
+	--disable-swscale-alpha \
+	--disable-swresample \
+	--disable-postproc \
+	--disable-avdevice \
+	--disable-ffprobe \
+	--disable-doc \
+	--disable-htmlpages \
+	--disable-manpages \
+	--disable-podpages \
+	--disable-txtpages \
+	--disable-w32threads \
+	--disable-os2threads \
+	--enable-gpl \
+	--enable-libx264 \
+	--enable-libx265 \
+	--disable-decoders --enable-decoder=h264 --enable-decoder=hevc --enable-decoder=yuv4 \
+	--disable-encoders --enable-encoder=libx265 --enable-encoder=libx264 \
+	--disable-hwaccels \
+	--disable-muxers --enable-muxer=h264 --enable-muxer=matroska --enable-muxer=mp4 --enable-muxer=segment \
+	--disable-demuxers --enable-demuxer=mov --enable-demuxer=m4v --enable-demuxer=matroska --enable-demuxer=rtsp \
+	--disable-parsers --enable-parser=hevc --enable-parser=h264 \
+	--enable-libfreetype \
+	--disable-filters --enable-filter=scale --enable-filter=drawtext \
+	--disable-bsfs \
+	--disable-protocols --enable-protocol=udp --enable-protocol=tcp --enable-protocol=http --enable-protocol=file \
+	--disable-indevs \
+	--disable-outdevs \
+	--disable-alsa \
+	--disable-appkit \
+	--disable-avfoundation \
+	--disable-bzlib \
+	--disable-coreimage \
+	--disable-iconv \
+	--disable-lzma \
+	--disable-sndio \
+	--disable-schannel \
+	--disable-sdl2 \
+	--disable-securetransport \
+	--disable-xlib \
+	--disable-zlib \
+	--disable-amf \
+	--disable-audiotoolbox \
+	--disable-cuda-llvm \
+	--disable-cuvid \
+	--disable-d3d11va \
+	--disable-dxva2 \
+	--disable-ffnvcodec \
+	--disable-nvdec \
+	--disable-nvenc \
+	--disable-vaapi \
+	--disable-vdpau \
+	--disable-videotoolbox \
+	--disable-symver \
+	--disable-debug
+make
+make install DESTDIR=$PKG
+
+find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | \
+  grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
+
+mkdir -p $PKG/usr/doc/$PRGNAM-$POSTFIX-$VERSION/txt
+cp -a \
+  COPYING.* MAINTAINERS CREDITS Changelog \
+  $PKG/usr/doc/$PRGNAM-$POSTFIX-$VERSION/txt/
+find . -name "RELEASE_NOTES" -exec cp -a {} $PKG/usr/doc/$PRGNAM-$POSTFIX-$VERSION/ \;
+cat $CWD/$PRGNAM-$POSTFIX.SlackBuild > $PKG/usr/doc/$PRGNAM-$POSTFIX-$VERSION/$PRGNAM-$POSTFIX.SlackBuild
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+
+cd $PKG
+/sbin/makepkg -l y -c n ${OUTPUT}/${PRGNAM}-${POSTFIX}-${VERSION}-${ARCH}-${BUILD}_${TAG}.${PKGTYPE:-tgz}
