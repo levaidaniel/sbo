@@ -5,7 +5,7 @@
 # Written by Zak B. Elep, <zakame@zakame.net>
 
 PRGNAM=virt-viewer
-VERSION=${VERSION:-7.0}
+VERSION=${VERSION:-8.0}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
