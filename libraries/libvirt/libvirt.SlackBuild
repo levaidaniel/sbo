@@ -56,6 +56,9 @@ sed -i "s|(prefix)/lib/sysctl|(sysconfdir)/sysctl|" src/Makefile.in
 patch -p1 < $CWD/use-virtgroup-in-polkit-rules.diff
 sed -i -e "s,@VIRTGROUP@,$VIRTGROUP,g" src/remote/libvirtd.rules
 
+# Fix Open vSwitch VLAN tagged networks
+patch -p1 < $CWD/93c1d5fe7bb7a62ef884eb41b505b2809d1704b6.diff
+
 CFLAGS="$SLKCFLAGS" \
 ./configure \
   --prefix=/usr \

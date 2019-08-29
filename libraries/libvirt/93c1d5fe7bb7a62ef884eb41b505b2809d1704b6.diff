@@ -1,0 +1,13 @@
+diff --git a/src/network/bridge_driver.c b/src/network/bridge_driver.c
+index 41fa89a4af..72e118643f 100644
+--- a/src/network/bridge_driver.c
++++ b/src/network/bridge_driver.c
+@@ -4814,7 +4814,7 @@ networkAllocatePort(virNetworkObjPtr obj,
+         if (!(port->plugtype == VIR_NETWORK_PORT_PLUG_TYPE_HOSTDEV_PCI ||
+               (port->plugtype == VIR_NETWORK_PORT_PLUG_TYPE_DIRECT &&
+                port->plug.direct.mode == VIR_NETDEV_MACVLAN_MODE_PASSTHRU) ||
+-              (port->plugtype == VIR_DOMAIN_NET_TYPE_BRIDGE &&
++              (port->plugtype == VIR_NETWORK_PORT_PLUG_TYPE_BRIDGE &&
+                port->virtPortProfile &&
+                port->virtPortProfile->virtPortType == VIR_NETDEV_VPORT_PROFILE_OPENVSWITCH))) {
+             virReportError(VIR_ERR_CONFIG_UNSUPPORTED,
