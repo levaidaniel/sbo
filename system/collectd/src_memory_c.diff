@@ -1,0 +1,11 @@
+--- src/memory.c	2019-11-15 10:43:58.544503549 +0100
++++ src/memory.c.new	2019-11-17 10:38:31.496933007 +0100
+@@ -28,7 +28,7 @@
+ #include "plugin.h"
+ #include "utils/common/common.h"
+ 
+-#ifdef HAVE_SYS_SYSCTL_H
++#if defined(HAVE_SYS_SYSCTL_H) && !defined(__GLIBC__)
+ #include <sys/sysctl.h>
+ #endif
+ #ifdef HAVE_SYS_VMMETER_H

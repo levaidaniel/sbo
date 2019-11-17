@@ -1,0 +1,11 @@
+--- src/cpu.c	2019-11-17 10:35:52.972093376 +0100
++++ src/cpu.c.new	2019-11-17 10:35:45.710054913 +0100
+@@ -58,7 +58,7 @@
+ #include <sys/sysinfo.h>
+ #endif /* HAVE_LIBKSTAT */
+ 
+-#if (defined(HAVE_SYSCTL) && HAVE_SYSCTL) ||                                   \
++#if (defined(HAVE_SYSCTL) && HAVE_SYSCTL  && !defined(__GLIBC__)) ||                                   \
+     (defined(HAVE_SYSCTLBYNAME) && HAVE_SYSCTLBYNAME)
+ #ifdef HAVE_SYS_SYSCTL_H
+ #include <sys/sysctl.h>
